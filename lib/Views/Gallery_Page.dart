@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:on_audio_query/on_audio_query.dart';
-
 import '../main.dart';
+import '../models/audio_model.dart';
 import 'Discography_Row.dart';
 import 'carousel_slider.dart';
 import '/serveses/allsongs_list.dart';
-
 
 class Gallery_Page extends StatefulWidget {
   @override
@@ -25,37 +23,37 @@ class _Gallery_PageState extends State<Gallery_Page> {
       body: ListView(
         children: [
           const Carousel_slider(currentIndexPage: 0),
-          Padding(
-            padding: const EdgeInsets.only(left: 15, bottom: 10),
-            child: Row(
-              children: [
-                Text(
-                  "Discography",
-                  style: TextStyle(
-                      color: Colors.red,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 25),
-                ),
-                Spacer(
-                  flex: 1,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(right: 15, bottom: 10, top: 5),
-                  child: GestureDetector(
-                    onTap: () => Navigator.pushNamed(context, allsongs.id),
-                    child: Text(
-                      "See all",
-                      style: TextStyle(
-                          color: Colors.amber,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 23),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const Discography_Pics_row(),
+          // Padding(
+          //   padding: const EdgeInsets.only(left: 15, bottom: 10),
+          //   child: Row(
+          //     children: [
+          //       Text(
+          //         "Discography",
+          //         style: TextStyle(
+          //             color: Colors.red,
+          //             fontWeight: FontWeight.bold,
+          //             fontSize: 25),
+          //       ),
+          //       Spacer(
+          //         flex: 1,
+          //       ),
+          //       Padding(
+          //         padding: EdgeInsets.only(right: 15, bottom: 10, top: 5),
+          //         child: GestureDetector(
+          //           onTap: () => Navigator.pushNamed(context, allsongs.id),
+          //           child: Text(
+          //             "See all",
+          //             style: TextStyle(
+          //                 color: Colors.amber,
+          //                 fontWeight: FontWeight.bold,
+          //                 fontSize: 23),
+          //           ),
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
+       //   const Discography_Pics_row(),
           Padding(
             padding: const EdgeInsets.only(left: 15, bottom: 10),
             child: Row(
@@ -101,19 +99,35 @@ class Pupular_Singles_List extends StatefulWidget {
 }
 
 class _Pupular_Singles_ListState extends State<Pupular_Singles_List> {
-
-
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 290,
+      height: 400,
+
       child: ListView.builder(
         itemCount: audios1.length,
         itemBuilder: (context, index) {
-          return Pupular_Singles(
-            Textt: audios1[index].title,
-            Pictures: "assets/Rectangle 32.png",
+          return GestureDetector(
+            onTap: (){
+
+              Audio_Model.URI=audios1[index].uri;
+
+
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return Audio_Model();
+
+              },));
+
+
+            },
+
+
+            child: Pupular_Singles(
+              Textt: audios1[index].title,
+
+              Pictures: "assets/Rectangle 32.png",
+            ),
           );
         },
         // children: [

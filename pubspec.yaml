@@ -40,6 +40,9 @@ dependencies:
   on_audio_query: ^2.9.0
   permission_handler: ^11.0.1
   audioplayers: ^5.2.1
+  just_audio: ^0.9.36
+  rxdart: ^0.27.7
+  audio_session: ^0.1.18
 
 dev_dependencies:
   flutter_test:
